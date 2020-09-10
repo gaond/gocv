@@ -1,3 +1,3 @@
-module gocv.io/x/gocv
+module github.com/gaond/gocv
 
-go 1.13
+go 1.15
