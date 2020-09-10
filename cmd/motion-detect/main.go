@@ -83,6 +83,13 @@ func main() {
 		defer kernel.Close()
 		gocv.Dilate(imgThresh, &imgThresh, kernel)
 
+		// img만 사용
+		/* mog2.Apply(img, &img)
+		gocv.Threshold(img, &img, 25, 255, gocv.ThresholdBinary)
+		kernel := gocv.GetStructuringElement(gocv.MorphRect, image.Pt(3, 3))
+		defer kernel.Close()
+		gocv.Dilate(img, &img, kernel) */
+
 		// now find contours
 		contours := gocv.FindContours(imgThresh, gocv.RetrievalExternal, gocv.ChainApproxSimple)
 		for i, c := range contours {
@@ -102,6 +109,8 @@ func main() {
 		gocv.PutText(&img, status, image.Pt(10, 20), gocv.FontHersheyPlain, 1.2, statusColor, 2)
 
 		window.IMShow(img)
+		//window.IMShow(imgDelta)
+		//window.IMShow(imgThresh)
 		if window.WaitKey(1) == 27 {
 			break
 		}
