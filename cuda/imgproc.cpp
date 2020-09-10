@@ -7,7 +7,7 @@ void GpuCvtColor(GpuMat src, GpuMat dst, int code) {
 }
 
 void GpuThreshold(GpuMat src, GpuMat dst, double thresh, double maxval, int typ) {
-    cv::cuda::threshold(*src, *dst, thresh, maxval, typ);
+    cv::threshold(*src, *dst, thresh, maxval, typ);
 }
 
 CannyEdgeDetector CreateCannyEdgeDetector(double lowThresh, double highThresh, int appertureSize, bool L2gradient) {
