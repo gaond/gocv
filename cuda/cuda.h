@@ -28,6 +28,10 @@ void PrintCudaDeviceInfo(int device);
 void PrintShortCudaDeviceInfo(int device);
 int GetCudaEnabledDeviceCount();
 
+void SetDevice(int device);
+int GetDevice();
+void ResetDevice();
+
 #ifdef __cplusplus
 }
 #endif

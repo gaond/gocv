@@ -89,3 +89,15 @@ func (m *GpuMat) ConvertTo(dst *GpuMat, mt gocv.MatType) {
 	C.GpuMat_ConvertTo(m.p, dst.p, C.int(mt))
 	return
 }
+
+func SetCudaDevice(device int) {
+	C.SetDevice(C.int(device))
+}
+
+func GetCudaDevice() int {
+	return int(C.GetDevice())
+}
+
+func ResetCudaDevice() {
+	C.ResetDevice()
+}
