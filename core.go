@@ -216,6 +216,15 @@ func NewMatWithSizeFromScalar(s Scalar, rows int, cols int, mt MatType) Mat {
 }
 
 // NewMatFromBytes returns a new Mat with a specific size and type, initialized from a []byte.
+func NewMatFromBytesUnsafe(rows int, cols int, mt MatType, data *byte, size int) (Mat, error) {
+	cBytes, err := toByteArrayUnsafe(data, size)
+	if err != nil {
+		return Mat{}, err
+	}
+	return newMat(C.Mat_NewFromBytes(C.int(rows), C.int(cols), C.int(mt), *cBytes)), nil
+}
+
+// NewMatFromBytes returns a new Mat with a specific size and type, initialized from a []byte.
 func NewMatFromBytes(rows int, cols int, mt MatType, data []byte) (Mat, error) {
 	cBytes, err := toByteArray(data)
 	if err != nil {
@@ -1941,6 +1950,13 @@ func GetTickCount() float64 {
 //
 func GetTickFrequency() float64 {
 	return float64(C.GetTickFrequency())
+}
+
+func toByteArrayUnsafe(b *byte, size int) (*C.struct_ByteArray, error) {
+	return &C.struct_ByteArray{
+		data:   (*C.char)(unsafe.Pointer(b)),
+		length: C.int(size),
+	}, nil
 }
 
 func toByteArray(b []byte) (*C.struct_ByteArray, error) {
