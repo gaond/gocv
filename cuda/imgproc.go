@@ -127,15 +127,3 @@ func CvtColor(src GpuMat, dst *GpuMat, code gocv.ColorConversionCode) {
 func Threshold(src GpuMat, dst *GpuMat, thresh, maxval float64, typ int) {
 	C.GpuThreshold(src.p, dst.p, C.double(thresh), C.double(maxval), C.int(typ))
 }
-
-type CudaFilter struct {
-	p unsafe.Pointer
-}
-
-func CreateMorphologyFilter(mt gocv.MatType, kernel *GpuMat) {
-	return CudaFilter{p: unsafe.Pointer(C.CreateMorphologyFilter(C.int(mt), kernel.p))}
-}
-
-func (f *CudaFilter) Apply(src GpuMat, dst *GpuMat) {
-	C.CudaFilter_Apply(C.CudaFilter(f.p), src.p, dst.p)
-}

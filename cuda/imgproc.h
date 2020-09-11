@@ -8,7 +8,6 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/cudaimgproc.hpp>
 #include <opencv2/cudaarithm.hpp>
-#include <opencv2/cudafilters.hpp>
 
 extern "C" {
 #endif
@@ -16,10 +15,8 @@ extern "C" {
 
 #ifdef __cplusplus
 typedef cv::Ptr<cv::cuda::CannyEdgeDetector>* CannyEdgeDetector;
-typedef cv::Ptr<cv::cuda::Filter>* CudaFilter;
 #else
 typedef void* CannyEdgeDetector;
-typedef void* CudaFilter;
 #endif
 
 void GpuCvtColor(GpuMat src, GpuMat dst, int code);
@@ -34,8 +31,6 @@ void CannyEdgeDetector_SetAppertureSize(CannyEdgeDetector det, int appertureSize
 void CannyEdgeDetector_SetHighThreshold(CannyEdgeDetector det, double highThresh);
 void CannyEdgeDetector_SetL2Gradient(CannyEdgeDetector det, bool L2gradient);
 void CannyEdgeDetector_SetLowThreshold(CannyEdgeDetector det, double lowThresh);
-
-CudaFilter CreateMorphologyFilter(int srcType, GpuMat kernel, Point anchor = Point(-1, -1), int iterations = 1);
 
 #ifdef __cplusplus
 }
