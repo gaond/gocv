@@ -390,8 +390,6 @@ Mat Mat_colRange(Mat m,int startrow,int endrow);
 
 void IntVector_Close(struct IntVector ivec);
 
-void Mat_SetData(Mat m, uint8_t* data);
-
 #ifdef __cplusplus
 }
 #endif

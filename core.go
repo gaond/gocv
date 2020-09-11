@@ -2053,8 +2053,3 @@ func (m *Mat) RowRange(start, end int) Mat {
 func (m *Mat) ColRange(start, end int) Mat {
 	return newMat(C.Mat_colRange(m.p, C.int(start), C.int(end)))
 }
-
-// SetData sets data to C.Mat->data
-func (m *Mat) SetData(data *uint8) {
-	C.Mat_SetData(m.p, (*C.uint8_t)(unsafe.Pointer(data)))
-}
