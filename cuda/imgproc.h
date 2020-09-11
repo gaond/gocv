@@ -9,7 +9,6 @@
 #include <opencv2/cudaimgproc.hpp>
 #include <opencv2/cudaarithm.hpp>
 #include <opencv2/cudafilters.hpp>
-//#include <opencv2/core/mat.hpp> // InputArray definition
 
 extern "C" {
 #endif
@@ -36,7 +35,7 @@ void CannyEdgeDetector_SetHighThreshold(CannyEdgeDetector det, double highThresh
 void CannyEdgeDetector_SetL2Gradient(CannyEdgeDetector det, bool L2gradient);
 void CannyEdgeDetector_SetLowThreshold(CannyEdgeDetector det, double lowThresh);
 
-CudaFilter CreateMorphologyFilter(int srcType, InputArray kernel, Point anchor = Point(-1, -1), int iterations = 1);
+CudaFilter CreateMorphologyFilter(int srcType, GpuMat kernel, Point anchor = Point(-1, -1), int iterations = 1);
 
 #ifdef __cplusplus
 }

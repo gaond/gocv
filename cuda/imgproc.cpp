@@ -53,8 +53,8 @@ void CannyEdgeDetector_SetLowThreshold(CannyEdgeDetector det, double lowThresh) 
      (*det)->setLowThreshold(lowThresh);
 }
 
-CudaFilter CreateMorphologyFilter(int srcType, InputArray kernel, Point anchor, int iterations) {
-    return new cv::Ptr<cv::cuda::Filter>(cv::cuda::createMorphologyFilter(MORPH_DILATE, srcType, anchor, iterations))
+CudaFilter CreateMorphologyFilter(int srcType, GpuMat kernel, Point anchor, int iterations) {
+    return new cv::Ptr<cv::cuda::Filter>(cv::cuda::createMorphologyFilter(MORPH_DILATE, srcType, kernel, anchor, iterations))
 }
 
 void CudaFilter_Apply(CudaFilter filter, GpuMat src, GpuMat dst) {
